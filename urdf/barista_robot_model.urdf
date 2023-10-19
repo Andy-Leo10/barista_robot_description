@@ -2,11 +2,11 @@
 <robot name="barista">
 
   <material name="red">
-      <color rgba="1.0 0.0 0.0 0.7"/>
+    <color rgba="1.0 0.0 0.0 0.7"/>
   </material>
 
   <material name="green_light">
-      <color rgba="0.0 1.0 0.0 0.7"/>
+    <color rgba="0.0 1.0 0.0 0.7"/>
   </material>
 
   <material name="green_dark">
@@ -14,22 +14,14 @@
   </material>
 
   <material name="blue">
-      <color rgba="0.0 0.0 1.0 0.7"/>
+    <color rgba="0.0 0.0 1.0 0.7"/>
   </material>
-
-  /**
-  * the tree structure of the robot is:
-  * base_link
-  * chassis
-  * 2 wheels | 2 castor wheels | 4 standoff rods
-  * cup holder tray
-  */
 
   <!--base link-->
   <link name="base_link">
   </link>
 
-  <!--chassis: cylinder D=356,H=155-->
+  <!--chassis cylinder D356 H155-->
   <joint name="base_link_joint" type="fixed">
     <parent link="base_link"/>
     <child link="chassis"/>
@@ -50,7 +42,7 @@
     </collision>
   </link>
 
-  <!--wheels: cylinder R=35.2,H=20.6-->
+  <!--wheels cylinder R35.2 H20.6-->
   <!--left wheel-->
   <joint name="left_wheel_joint" type="continuous">
     <parent link="chassis"/>
@@ -63,14 +55,14 @@
 
   <link name="left_wheel">
     <visual>
-      <origin xyz="1.5707 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="1.5707 0 0"/>
       <geometry>
         <cylinder length="0.0206" radius="0.0352"/>
       </geometry>
       <material name="blue"/>
     </visual>
     <collision>
-      <origin xyz="1.5707 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="1.5707 0 0"/>
       <geometry>
         <cylinder length="0.0206" radius="0.0352"/>
       </geometry>
@@ -80,7 +72,7 @@
   <joint name="right_wheel_joint" type="continuous">
     <parent link="chassis"/>
     <child link="right_wheel"/>
-    <origin xyz="0 -0.150 -0.0775" rpy="0 0 0"/>
+    <origin xyz="0 +0.150 -0.0775" rpy="0 0 0"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
     <limit effort="10000" velocity="1000"/>
     <joint_properties damping="1.0" friction="1.0"/>
@@ -88,26 +80,26 @@
 
   <link name="right_wheel">
     <visual>
-      <origin xyz="-1.5707 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="-1.5707 0 0"/>
       <geometry>
         <cylinder length="0.0206" radius="0.0352"/>
       </geometry>
       <material name="blue"/>
     </visual>
     <collision>
-      <origin xyz="-1.5707 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="-1.5707 0 0"/>
       <geometry>
         <cylinder length="0.0206" radius="0.0352"/>
       </geometry>
     </collision>
   </link>
 
-  <!--standoff_rods: cylinder D=20,H=220-->
-  <!--rod at (x+,y+)-->
+  <!--standoff_rods cylinder D20 H220-->
+  <!--rod at (xp yp)-->
   <joint name="standoff_rod_xpyp_joint" type="fixed">
     <parent link="chassis"/>
     <child link="standoff_rod_xpyp"/>
-    <origin xyz="0.150 0.150 0.1875" rpy="0 0 0"/>
+    <origin xyz="0.075 0.075 0.1875" rpy="0 0 0"/>
   </joint>
 
   <link name="standoff_rod_xpyp">
@@ -126,11 +118,11 @@
     </collision>
   </link>
 
-  <!--rod at (x+,y-)-->
+  <!--rod at (xp yn)-->
   <joint name="standoff_rod_xpyn_joint" type="fixed">
     <parent link="chassis"/>
     <child link="standoff_rod_xpyn"/>
-    <origin xyz="0.150 -0.150 0.1875" rpy="0 0 0"/>
+    <origin xyz="0.075 -0.075 0.1875" rpy="0 0 0"/>
   </joint>
 
   <link name="standoff_rod_xpyn">
@@ -149,11 +141,11 @@
     </collision>
   </link>
 
-  <!--rod at (x-,y+)-->
+  <!--rod at (xn yp)-->
   <joint name="standoff_rod_xnyp_joint" type="fixed">
     <parent link="chassis"/>
     <child link="standoff_rod_xnyp"/>
-    <origin xyz="-0.150 0.150 0.1875" rpy="0 0 0"/>
+    <origin xyz="-0.075 0.075 0.1875" rpy="0 0 0"/>
   </joint>
 
   <link name="standoff_rod_xnyp">
@@ -172,11 +164,11 @@
     </collision>
   </link>
 
-  <!--rod at (x-,y-)-->
+  <!--rod at (xn yn)-->
   <joint name="standoff_rod_xnyn_joint" type="fixed">
     <parent link="chassis"/>
     <child link="standoff_rod_xnyn"/>
-    <origin xyz="-0.150 -0.150 0.1875" rpy="0 0 0"/>
+    <origin xyz="-0.075 -0.075 0.1875" rpy="0 0 0"/>
   </joint>
 
   <link name="standoff_rod_xnyn">
@@ -195,7 +187,7 @@
     </collision>
   </link>
 
-  <!--cup holder tray: cylinder D=320, H=90-->
+  <!--cup holder tray cylinder D320 H90-->
   <joint name="cup_holder_tray_joint" type="fixed">
     <parent link="chassis"/>
     <child link="cup_holder_tray"/>
