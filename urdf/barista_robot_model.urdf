@@ -209,4 +209,153 @@
       </geometry>
     </collision>
   </link>
+
+
+
+  <!--caster wheels a nested roll-pitch-yaw cylinder R10 H2-cylinder R10 H2-sphere R35.2-->
+  <!--front caster wheel-->
+  <joint name="front_roll_joint" type="continuous">
+    <parent link="chassis"/>
+    <child link="front_caster_wheel_r"/>
+    <origin xyz="0.100 0 -0.0775" rpy="0 0 0"/>
+    <axis xyz="1 0 0" rpy="0 0 0"/>
+    <limit effort="1000.0" velocity="100.0" />
+    <dynamics damping="0.0" friction="0.1"/>
+  </joint>
+  <link name="front_caster_wheel_r">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.002" radius="0.010"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.002" radius="0.010"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="front_pitch_joint" type="continuous">
+    <parent link="front_caster_wheel_r"/>
+    <child link="front_caster_wheel_p"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <limit effort="1000.0" velocity="100.0" />
+    <dynamics damping="0.0" friction="0.1"/>
+  </joint>
+  <link name="front_caster_wheel_p">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.002" radius="0.010"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.002" radius="0.010"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="front_yaw_joint" type="continuous">
+    <parent link="front_caster_wheel_p"/>
+    <child link="front_caster_wheel_y"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1" rpy="0 0 0"/>
+    <limit effort="1000.0" velocity="100.0" />
+    <dynamics damping="0.0" friction="0.1"/>
+  </joint>
+  <link name="front_caster_wheel_y">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.0352"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.0352"/>
+      </geometry>
+    </collision>
+  </link>
+  <!--back caster wheel-->
+  <joint name="back_roll_joint" type="continuous">
+    <parent link="chassis"/>
+    <child link="back_caster_wheel_r"/>
+    <origin xyz="-0.100 0 -0.0775" rpy="0 0 0"/>
+    <axis xyz="1 0 0" rpy="0 0 0"/>
+    <limit effort="1000.0" velocity="100.0" />
+    <dynamics damping="0.0" friction="0.1"/>
+  </joint>
+  <link name="back_caster_wheel_r">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.002" radius="0.010"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.002" radius="0.010"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="back_pitch_joint" type="continuous">
+    <parent link="back_caster_wheel_r"/>
+    <child link="back_caster_wheel_p"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <limit effort="1000.0" velocity="100.0" />
+    <dynamics damping="0.0" friction="0.1"/>
+  </joint>
+  <link name="back_caster_wheel_p">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.002" radius="0.010"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.002" radius="0.010"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="back_yaw_joint" type="continuous">
+    <parent link="back_caster_wheel_p"/>
+    <child link="back_caster_wheel_y"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1" rpy="0 0 0"/>
+    <limit effort="1000.0" velocity="100.0" />
+    <dynamics damping="0.0" friction="0.1"/>
+  </joint>
+  <link name="back_caster_wheel_y">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.0352"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.0352"/>
+      </geometry>
+    </collision>
+  </link>
+
 </robot>
