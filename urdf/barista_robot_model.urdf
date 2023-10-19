@@ -1,0 +1,220 @@
+<?xml version="1.0"?>
+<robot name="barista">
+
+  <material name="red">
+      <color rgba="1.0 0.0 0.0 0.7"/>
+  </material>
+
+  <material name="green_light">
+      <color rgba="0.0 1.0 0.0 0.7"/>
+  </material>
+
+  <material name="green_dark">
+    <color rgba="0.0 0.5 0.0 0.7"/>
+  </material>
+
+  <material name="blue">
+      <color rgba="0.0 0.0 1.0 0.7"/>
+  </material>
+
+  /**
+  * the tree structure of the robot is:
+  * base_link
+  * chassis
+  * 2 wheels | 2 castor wheels | 4 standoff rods
+  * cup holder tray
+  */
+
+  <!--base link-->
+  <link name="base_link">
+  </link>
+
+  <!--chassis: cylinder D=356,H=155-->
+  <joint name="base_link_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="chassis"/>
+    <origin xyz="0 0 0.0775" rpy="0 0 0"/>
+  </joint>
+
+  <link name="chassis">
+    <visual>
+      <geometry>
+        <cylinder length="0.155" radius="0.178"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.155" radius="0.178"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!--wheels: cylinder R=35.2,H=20.6-->
+  <!--left wheel-->
+  <joint name="left_wheel_joint" type="continuous">
+    <parent link="chassis"/>
+    <child link="left_wheel"/>
+    <origin xyz="0 -0.150 -0.0775" rpy="0 0 0"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <limit effort="10000" velocity="1000"/>
+    <joint_properties damping="1.0" friction="1.0"/>
+  </joint>
+
+  <link name="left_wheel">
+    <visual>
+      <origin xyz="1.5707 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.0206" radius="0.0352"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin xyz="1.5707 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.0206" radius="0.0352"/>
+      </geometry>
+    </collision>
+  </link>
+  <!--right wheel-->
+  <joint name="right_wheel_joint" type="continuous">
+    <parent link="chassis"/>
+    <child link="right_wheel"/>
+    <origin xyz="0 -0.150 -0.0775" rpy="0 0 0"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <limit effort="10000" velocity="1000"/>
+    <joint_properties damping="1.0" friction="1.0"/>
+  </joint>
+
+  <link name="right_wheel">
+    <visual>
+      <origin xyz="-1.5707 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.0206" radius="0.0352"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin xyz="-1.5707 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.0206" radius="0.0352"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!--standoff_rods: cylinder D=20,H=220-->
+  <!--rod at (x+,y+)-->
+  <joint name="standoff_rod_xpyp_joint" type="fixed">
+    <parent link="chassis"/>
+    <child link="standoff_rod_xpyp"/>
+    <origin xyz="0.150 0.150 0.1875" rpy="0 0 0"/>
+  </joint>
+
+  <link name="standoff_rod_xpyp">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.220" radius="0.020"/>
+      </geometry>
+      <material name="green_dark"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.220" radius="0.020"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!--rod at (x+,y-)-->
+  <joint name="standoff_rod_xpyn_joint" type="fixed">
+    <parent link="chassis"/>
+    <child link="standoff_rod_xpyn"/>
+    <origin xyz="0.150 -0.150 0.1875" rpy="0 0 0"/>
+  </joint>
+
+  <link name="standoff_rod_xpyn">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.220" radius="0.020"/>
+      </geometry>
+      <material name="green_dark"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.220" radius="0.020"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!--rod at (x-,y+)-->
+  <joint name="standoff_rod_xnyp_joint" type="fixed">
+    <parent link="chassis"/>
+    <child link="standoff_rod_xnyp"/>
+    <origin xyz="-0.150 0.150 0.1875" rpy="0 0 0"/>
+  </joint>
+
+  <link name="standoff_rod_xnyp">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.220" radius="0.020"/>
+      </geometry>
+      <material name="green_dark"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.220" radius="0.020"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!--rod at (x-,y-)-->
+  <joint name="standoff_rod_xnyn_joint" type="fixed">
+    <parent link="chassis"/>
+    <child link="standoff_rod_xnyn"/>
+    <origin xyz="-0.150 -0.150 0.1875" rpy="0 0 0"/>
+  </joint>
+
+  <link name="standoff_rod_xnyn">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.220" radius="0.020"/>
+      </geometry>
+      <material name="green_dark"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.220" radius="0.020"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!--cup holder tray: cylinder D=320, H=90-->
+  <joint name="cup_holder_tray_joint" type="fixed">
+    <parent link="chassis"/>
+    <child link="cup_holder_tray"/>
+    <origin xyz="0 0 0.3425" rpy="0 0 0"/>
+  </joint>
+
+  <link name="cup_holder_tray">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.090" radius="0.160"/>
+      </geometry>
+      <material name="green_light"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.090" radius="0.160"/>
+      </geometry>
+    </collision>
+  </link>
+</robot>
