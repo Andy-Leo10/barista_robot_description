@@ -59,7 +59,7 @@ def generate_launch_description():
             arguments=['-d', rviz_config_dir])
 
     return LaunchDescription([
-        joint_state_publisher_gui_node,
+        #joint_state_publisher_gui_node,
         gazebo,
         robot_state_publisher_node,
         spawn_entity,

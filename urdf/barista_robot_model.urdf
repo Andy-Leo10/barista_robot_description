@@ -257,7 +257,7 @@
   <joint name="front_roll_joint" type="continuous">
     <parent link="chassis"/>
     <child link="front_caster_wheel_r"/>
-    <origin xyz="0.100 0 -0.0775" rpy="0 0 0"/>
+    <origin xyz="0.100 0 -0.0951" rpy="0 0 0"/>
     <axis xyz="1 0 0" rpy="0 0 0"/>
     <limit effort="1000.0" velocity="100.0" />
     <dynamics damping="0.0" friction="0.1"/>
@@ -324,14 +324,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <sphere radius="0.0352"/>
+        <sphere radius="0.0176"/>
       </geometry>
       <material name="blue"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <sphere radius="0.0352"/>
+        <sphere radius="0.0176"/>
       </geometry>
     </collision>
     <inertial>
@@ -344,7 +344,7 @@
   <joint name="back_roll_joint" type="continuous">
     <parent link="chassis"/>
     <child link="back_caster_wheel_r"/>
-    <origin xyz="-0.100 0 -0.0775" rpy="0 0 0"/>
+    <origin xyz="-0.100 0 -0.0951" rpy="0 0 0"/>
     <axis xyz="1 0 0" rpy="0 0 0"/>
     <limit effort="1000.0" velocity="100.0" />
     <dynamics damping="0.0" friction="0.1"/>
@@ -411,14 +411,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <sphere radius="0.0352"/>
+        <sphere radius="0.0176"/>
       </geometry>
       <material name="blue"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <sphere radius="0.0352"/>
+        <sphere radius="0.0176"/>
       </geometry>
     </collision>
     <inertial>
@@ -454,6 +454,24 @@
     </inertial>
   </link>
 
+  <!--JOINT PUBLISHER-->
+  <gazebo>
+    <plugin name="joint_state_publisher_node" filename="libgazebo_ros_joint_state_publisher.so">
+      <ros>
+          <remapping>~/out:=joint_states</remapping>
+      </ros>
+      <update_rate>30</update_rate>
+      <joint_name>left_wheel_joint</joint_name>
+      <joint_name>right_wheel_joint</joint_name>
+      <joint_name>front_roll_joint</joint_name>
+      <joint_name>front_pitch_joint</joint_name>
+      <joint_name>front_yaw_joint</joint_name>
+      <joint_name>back_roll_joint</joint_name>
+      <joint_name>back_pitch_joint</joint_name>
+      <joint_name>back_yaw_joint</joint_name>
+    </plugin>
+  </gazebo>
+
     <!-- LIDAR LASER -->
    <gazebo reference="laser_model">
     <sensor name="sensor_ray" type="ray">
@@ -475,7 +493,7 @@
         <always_on>true</always_on>
         <visualize>true</visualize>
         <update_rate>100.0</update_rate>
-        <plugin name="laser" filename="libgazebo_ros_ray_sensor.so">
+        <plugin name="laser_node" filename="libgazebo_ros_ray_sensor.so">
           <ros>
             <namespace>/barista</namespace>
             <remapping>~/out:=laser_scan</remapping>
@@ -485,32 +503,9 @@
       </sensor>
 	</gazebo>
     
-  <!--JOINT PUBLISHER & DIFFERENTIAL DRIVE-->
+  <!--DIFFERENTIAL DRIVE-->
   <gazebo>
-    <plugin name="barista_joint_state" filename="libgazebo_ros_joint_state_publisher.so">
-      <ros>
-          <remapping>~/out:=joint_states</remapping>
-      </ros>
-      <update_rate>30</update_rate>
-      <joint_name>base_link_joint</joint_name>
-      <joint_name>left_wheel_joint</joint_name>
-      <joint_name>right_wheel_joint</joint_name>
-      <joint_name>standoff_rod_xpyp_joint</joint_name>
-      <joint_name>standoff_rod_xpyn_joint</joint_name>
-      <joint_name>standoff_rod_xnyp_joint</joint_name>
-      <joint_name>standoff_rod_xnyn_joint</joint_name>
-      <joint_name>cup_holder_tray_joint</joint_name>
-      <joint_name>front_roll_joint</joint_name>
-      <joint_name>front_pitch_joint</joint_name>
-      <joint_name>front_yaw_joint</joint_name>
-      <joint_name>back_roll_joint</joint_name>
-      <joint_name>back_pitch_joint</joint_name>
-      <joint_name>back_yaw_joint</joint_name>
-      <joint_name>laser_model_link_joint</joint_name>
-    </plugin>
-  </gazebo>
-  <gazebo>
-    <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
+    <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller_node">
 
       <!-- wheels -->
       <left_joint>left_wheel_joint</left_joint>
@@ -562,6 +557,24 @@
     <mu1>0.5</mu1>
     <mu2>0.5</mu2>
     <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="chassis">
+    <material>Gazebo/Red</material>
+  </gazebo>
+  <gazebo reference="cup_holder_tray">
+    <material>Gazebo/Red</material>
+  </gazebo>
+  <gazebo reference="standoff_rod_xpyp">
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="standoff_rod_xpyn">
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="standoff_rod_xnyp">
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="standoff_rod_xnyn">
+    <material>Gazebo/Orange</material>
   </gazebo>
 
 </robot>
