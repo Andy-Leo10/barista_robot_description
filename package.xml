@@ -11,12 +11,7 @@
 
   <depend>urdf</depend>
   <depend>xacro</depend>
-  <!--for ros2 control-->
-  <depend>ros2_control</depend>
-  <depend>gazebo_ros2_control</depend>
-  <depend>joint_state_broadcaster</depend>
-  <depend>joint_trajectory_controller</depend>
-  <depend>velocity_controllers</depend>
+  <depend>gazebo_ros</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
