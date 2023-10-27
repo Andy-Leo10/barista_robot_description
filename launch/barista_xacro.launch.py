@@ -16,7 +16,7 @@ def generate_launch_description():
     #files
     description_package_name = "barista_robot_description"
     xacro_file='barista_robot_model.urdf.xacro'
-    rviz_file = 'vis2.rviz'
+    rviz_file = 'vis3.rviz'
     world_selected = 'obstacles.world'
     # Position and orientation
     position = [0.0, 0.0, 0.2]
@@ -44,7 +44,7 @@ def generate_launch_description():
     print("GAZEBO PLUGINS PATH==" + str(os.environ["GAZEBO_PLUGIN_PATH"]) + '\n')
 
     # launch argument for the world file
-    world_file_arg=DeclareLaunchArgument('world', default_value=[os.path.join(pkg_robot_gazebo, 'worlds', world_selected), ''], description='SDF world file'),
+    world_file_arg=DeclareLaunchArgument('world', default_value=[os.path.join(pkg_robot_gazebo, 'worlds', world_selected), ''], description='Path to the Gazebo world file')
 
     # Gazebo launch
     gazebo = IncludeLaunchDescription(
@@ -55,7 +55,7 @@ def generate_launch_description():
 
     # Robot State Publisher
     robot_desc_path = os.path.join(get_package_share_directory(description_package_name))
-    xacro_path = os.path.join(robot_desc_path, 'urdf', xacro_file)
+    xacro_path = os.path.join(robot_desc_path, 'xacro', xacro_file)
     # set arguments for xacro
     robot_name='barista1'
     include_laser='true'
@@ -66,7 +66,7 @@ def generate_launch_description():
         namespace=robot_name,
         emulate_tty=True,
         parameters=[{ 'use_sim_time': True,
-                     'robot_description': Command(['xacro', xacro_path, 'robot_name:=', robot_name, 'include_laser:=', include_laser])}],
+                     'robot_description': Command(['xacro ', xacro_path, ' robot_name:=', robot_name, ' include_laser:=', include_laser])}],
         output='screen'
     )
 
@@ -91,7 +91,7 @@ def generate_launch_description():
         arguments=['-entity', entity_name,
                    '-x', str(position[0]), '-y', str(position[1]), '-z', str(position[2]),
                    '-R', str(orientation[0]), '-P', str(orientation[1]), '-Y', str(orientation[2]),
-                   '-topic', '/robot_description']
+                   '-topic', robot_name+'/robot_description']
     )
 
     return LaunchDescription([
@@ -101,3 +101,5 @@ def generate_launch_description():
         rviz_node,
         spawn_robot,
     ])
+
+#ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --remap cmd_vel:=/barista1/cmd_vel

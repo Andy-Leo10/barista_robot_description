@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<xacro:macro name="standoff" params="name, radius, height, mass, material">  
+<xacro:macro name="standoff" params="name radius height mass material">  
     <link name="${name}">
         <visual>
             <geometry>

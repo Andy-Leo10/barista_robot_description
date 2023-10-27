@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<xacro:macro name="wheel" params="name, radius, width, mass, material">  
+<xacro:macro name="wheel" params="name radius width mass material">  
     <link name="${name}">
         <visual>
             <origin xyz="0 0 0" rpy="1.5707 0 0"/>
@@ -26,11 +26,11 @@
     </link>
 </xacro:macro>  
 
-<xacro:macro name="caster" params="name, radius, mass, material">  
+<xacro:macro name="caster" params="name radius mass material">  
   <!--local variables-->
-  <xacro:let name="cylinder_r" value="${radius/3}"/>
-  <xacro:let name="cylinder_w" value="${radius/15}"/>
-  <xacro:let name="cylinder_m" value="${mass/5}"/>
+  <xacro:property name="cylinder_r" value="${radius/3}"/>
+  <xacro:property name="cylinder_h" value="${radius/15}"/>
+  <xacro:property name="cylinder_m" value="${mass/5}"/>
 
   <link name="${name}_wheel_r">
     <visual>
