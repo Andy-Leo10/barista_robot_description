@@ -121,14 +121,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <cylinder length="0.220" radius="0.020"/>
+        <cylinder length="0.220" radius="0.010"/>
       </geometry>
       <material name="green_dark"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <cylinder length="0.220" radius="0.020"/>
+        <cylinder length="0.220" radius="0.010"/>
       </geometry>
     </collision>
     <inertial>
@@ -149,14 +149,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <cylinder length="0.220" radius="0.020"/>
+        <cylinder length="0.220" radius="0.010"/>
       </geometry>
       <material name="green_dark"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <cylinder length="0.220" radius="0.020"/>
+        <cylinder length="0.220" radius="0.010"/>
       </geometry>
     </collision>
     <inertial>
@@ -177,14 +177,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <cylinder length="0.220" radius="0.020"/>
+        <cylinder length="0.220" radius="0.010"/>
       </geometry>
       <material name="green_dark"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <cylinder length="0.220" radius="0.020"/>
+        <cylinder length="0.220" radius="0.010"/>
       </geometry>
     </collision>
     <inertial>
@@ -205,14 +205,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <cylinder length="0.220" radius="0.020"/>
+        <cylinder length="0.220" radius="0.010"/>
       </geometry>
       <material name="green_dark"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <cylinder length="0.220" radius="0.020"/>
+        <cylinder length="0.220" radius="0.010"/>
       </geometry>
     </collision>
     <inertial>
