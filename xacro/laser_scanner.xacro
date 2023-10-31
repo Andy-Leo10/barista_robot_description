@@ -33,8 +33,8 @@
         <ray>
           <scan>
             <horizontal>
-              <samples>200</samples>
-              <resolution>1.0</resolution>
+              <samples>360</samples>
+              <!--resolution>1.0</resolution-->
               <min_angle>-3.14</min_angle>
               <max_angle>3.14</max_angle>
             </horizontal>
@@ -46,9 +46,10 @@
         </ray>
         <always_on>true</always_on>
         <visualize>true</visualize>
-        <update_rate>100.0</update_rate>
+        <update_rate>20.0</update_rate>
         <plugin name="laser_scanner_node" filename="libgazebo_ros_ray_sensor.so">
           <ros>
+            <namespace>/${robot_name}</namespace>
             <remapping>~/out:=scan</remapping>
           </ros>
           <output_type>sensor_msgs/LaserScan</output_type>

@@ -2,6 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="barista">
 <xacro:property name="robot_name" value="$(arg robot_name)"/>
 <xacro:property name="include_laser" value="$(arg include_laser)"/>
+<xacro:property name="robot_color" value="$(arg robot_color)"/>
 
 <!--include the macros-->
 <xacro:include filename="$(find barista_robot_description)/xacro/wheel.xacro"/>
@@ -227,10 +228,10 @@
     <material>Gazebo/Black</material>
 </gazebo>
 <gazebo reference="chassis">
-    <material>Gazebo/Red</material>
+    <material>${robot_color}</material>
 </gazebo>
 <gazebo reference="cup_holder_tray">
-    <material>Gazebo/Red</material>
+    <material>${robot_color}</material>
 </gazebo>
 <gazebo reference="xpyp_standoff">
     <material>Gazebo/White</material>

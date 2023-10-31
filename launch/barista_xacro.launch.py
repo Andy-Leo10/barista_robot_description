@@ -59,6 +59,7 @@ def generate_launch_description():
     # set arguments for xacro
     robot_name='barista1'
     include_laser='true'
+    robot_color='Gazebo/Purple'
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
@@ -66,7 +67,7 @@ def generate_launch_description():
         namespace=robot_name,
         emulate_tty=True,
         parameters=[{ 'use_sim_time': True,
-                     'robot_description': Command(['xacro ', xacro_path, ' robot_name:=', robot_name, ' include_laser:=', include_laser])}],
+                     'robot_description': Command(['xacro ', xacro_path, ' robot_name:=', robot_name, ' include_laser:=', include_laser, ' robot_color:=', robot_color])}],
         output='screen'
     )
 
