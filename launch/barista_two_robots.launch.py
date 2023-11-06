@@ -16,7 +16,7 @@ def generate_launch_description():
     #files
     description_package_name = "barista_robot_description"
     xacro_file='barista_robot_model.urdf.xacro'
-    rviz_file = 'vis3.rviz'
+    rviz_file = 'vis4.rviz'
     world_selected = 'obstacles.world'
     # Position and orientation
     robot_base_name = "barista"
@@ -53,6 +53,24 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(pkg_gazebo_ros, 'launch', 'gazebo.launch.py'),
         )
+    )
+
+    # set WORLD tf
+    static_tf_publisher_node1 = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='static_transform_publisher_turtle_odom',
+        output='screen',
+        emulate_tty=True,
+        arguments=['0', '0', '0', '0', '0', '0', 'world', 'rick/odom']
+    )
+    static_tf_publisher_node2 = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='static_transform_publisher_turtle_odom',
+        output='screen',
+        emulate_tty=True,
+        arguments=['0', '0', '0', '0', '0', '0', 'world', 'morty/odom']
     )
 
     # Robot State Publishers
@@ -126,6 +144,8 @@ def generate_launch_description():
     return LaunchDescription([
         world_file_arg,
         gazebo,
+        static_tf_publisher_node1,
+        static_tf_publisher_node2,
         robot_state_publisher_node1,
         robot_state_publisher_node2,
         rviz_node,
